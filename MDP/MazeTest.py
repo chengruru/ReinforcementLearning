@@ -20,6 +20,7 @@ class QLearningMain(QtCore.QThread):
         qtable = self.env.build_q_table()
         # print(qtable)
         for episode in range(self.env.MAX_EPISODES):
+            print("episode--------- : ", episode)
             # 行走步数计数器
             step_counter = 0
 

@@ -151,11 +151,11 @@ class GridEnvV0(QtWidgets.QWidget, Ui_Form):
 
     def choose_action(self, state, qtable, step_counter):
 
-        # if self.EPSILON < 0.05 :
-        #     self.EPSILON
-        print("self.EPSILON : ", self.EPSILON)
+        Epsilon_decreasing = self.EPSILON / (step_counter + 1)
+        if Epsilon_decreasing < 0.1:
+            Epsilon_decreasing = 0.1
         state_action = qtable.iloc[state, :]
-        if (np.random.uniform() < self.EPSILON) or ((state_action == 0).all()):
+        if (np.random.uniform() < Epsilon_decreasing) or ((state_action == 0).all()):
             # act non-greedy or state-action have no value
             action_name = np.random.choice(self.actions)
         else:
